@@ -13,7 +13,7 @@ import {
   SiProducthunt,
   SiBlogger
 } from 'react-icons/si'
-import { RiBillLine, RiNotification2Line } from 'react-icons/ri'
+import { RiBillLine, RiNotification2Line, RiCouponLine, RiCoupon3Line } from 'react-icons/ri'
 import { ImBlog, ImBlogger } from 'react-icons/im'
 import {
   BiCategory,
@@ -21,7 +21,10 @@ import {
 } from 'react-icons/bi'
 import { Button, Layout, Menu, theme } from 'antd';
 import {Link} from 'react-router-dom'
-  const { Header, Sider, Content } = Layout;
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const { Header, Sider, Content } = Layout;
 const MainLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -56,7 +59,7 @@ const MainLayout = () => {
               label: 'Dashboard',
             },
             {
-              key: 'customer',
+              key: 'customers',
               icon: <AiOutlineUser className='fs-4' />,
               label: 'Customer',
             },
@@ -108,9 +111,26 @@ const MainLayout = () => {
               ]
             },
             {
-              key: 'order',
+              key: 'orders',
               icon: <RiBillLine className='fs-4' />,
               label: 'Order',
+            },
+            {
+              key: "marketing",
+              icon: <RiCouponLine className="fs-4" />,
+              label: "Marketing",
+              children: [
+                {
+                  key: "coupon",
+                  icon: <RiCoupon3Line className="fs-4" />,
+                  label: "Add Coupon",
+                },
+                {
+                  key: "coupon-list",
+                  icon: <RiCoupon3Line className="fs-4" />,
+                  label: "Coupon List",
+                },
+              ],
             },
             {
               key: 'blogs',
@@ -140,7 +160,7 @@ const MainLayout = () => {
               ]
             },
             {
-              key: 'enquiry',
+              key: 'enquiries',
               icon: <AiOutlineFileSearch className='fs-4' />,
               label: 'Enquiry',
             },
@@ -197,6 +217,17 @@ const MainLayout = () => {
             background: colorBgContainer,
           }}
         >
+          <ToastContainer 
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            theme="dark"
+          />
           <Outlet />
         </Content>
       </Layout>
